@@ -7,19 +7,45 @@
 </head>
 
 <body>
-  <nav>
-    <a href="/index.html">Home</a>
-    <a href="/login.html">Login</a>
-    <a href="/dashboard.html">Dashboard</a>
-    <a href="/projects.html">Projects</a>
-    <a href="/tasks.html">Task Board</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/index.html">TaskFlow</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link active" href="/index.html">Home</a>
+          <a class="nav-link" href="/login.html">Login</a>
+          <a class="nav-link" href="/dashboard.html">Dashboard</a>
+          <a class="nav-link" href="/projects.html">Projects</a>
+          <a class="nav-link" href="/tasks.html">Task Board</a>
+        </div>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <h1>TaskFlow</h1>
-    <p>Organize your projects and tasks in one place.</p>
+  <main class="hero-section d-flex align-items-center">
+    <div class="container text-center">
+      <h1 class="display-3 fw-bold mb-4">TaskFlow</h1>
 
-    <a href="/login.html">Get Started</a>
+      <p class="lead mb-4">
+        Organize your projects and tasks in one place.
+      </p>
+
+      <a href="/login.html" class="btn btn-primary btn-lg">
+        Get Started
+      </a>
+    </div>
   </main>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

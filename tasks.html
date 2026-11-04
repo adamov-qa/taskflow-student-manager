@@ -7,28 +7,72 @@
 </head>
 
 <body>
-  <nav>
-    <a href="/index.html">Home</a>
-    <a href="/login.html">Login</a>
-    <a href="/dashboard.html">Dashboard</a>
-    <a href="/projects.html">Projects</a>
-    <a href="/tasks.html">Task Board</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/index.html">TaskFlow</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/index.html">Home</a>
+          <a class="nav-link" href="/login.html">Login</a>
+          <a class="nav-link" href="/dashboard.html">Dashboard</a>
+          <a class="nav-link" href="/projects.html">Projects</a>
+          <a class="nav-link active" href="/tasks.html">Task Board</a>
+        </div>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <h1>Task Board</h1>
+  <main class="page-section">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Task Board</h1>
 
-    <section>
-      <h2>Not Started</h2>
-    </section>
+        <button class="btn btn-primary">
+          Add Task
+        </button>
+      </div>
 
-    <section>
-      <h2>In Progress</h2>
-    </section>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card shadow-sm task-column">
+            <div class="card-body">
+              <h4 class="card-title">Not Started</h4>
+              <p class="text-muted">New tasks will appear here.</p>
+            </div>
+          </div>
+        </div>
 
-    <section>
-      <h2>Done</h2>
-    </section>
+        <div class="col-md-4">
+          <div class="card shadow-sm task-column">
+            <div class="card-body">
+              <h4 class="card-title">In Progress</h4>
+              <p class="text-muted">Tasks in progress will appear here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card shadow-sm task-column">
+            <div class="card-body">
+              <h4 class="card-title">Done</h4>
+              <p class="text-muted">Completed tasks will appear here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -7,17 +7,61 @@
 </head>
 
 <body>
-  <nav>
-    <a href="/index.html">Home</a>
-    <a href="/login.html">Login</a>
-    <a href="/dashboard.html">Dashboard</a>
-    <a href="/projects.html">Projects</a>
-    <a href="/tasks.html">Task Board</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/index.html">TaskFlow</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/index.html">Home</a>
+          <a class="nav-link" href="/login.html">Login</a>
+          <a class="nav-link" href="/dashboard.html">Dashboard</a>
+          <a class="nav-link active" href="/projects.html">Projects</a>
+          <a class="nav-link" href="/tasks.html">Task Board</a>
+        </div>
+      </div>
+    </div>
   </nav>
 
-  <main>
-    <h1>Projects</h1>
-    <p>Create and manage your projects.</p>
+  <main class="page-section">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Projects</h1>
+
+        <button class="btn btn-primary">
+          Add Project
+        </button>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title">Sample Project</h5>
+
+              <p class="card-text text-muted">
+                Your projects will appear here.
+              </p>
+
+              <a href="/tasks.html" class="btn btn-outline-primary">
+                View Tasks
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
+
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
