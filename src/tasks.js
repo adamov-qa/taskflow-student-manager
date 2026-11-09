@@ -60,7 +60,14 @@ async function loadTasks() {
     alert(error.message);
     return;
   }
+const { data: attachments, error: attachmentsError } = await supabase
+  .from('attachments')
+  .select('*');
 
+if (attachmentsError) {
+  alert(attachmentsError.message);
+  return;
+}
   tasksContainer.innerHTML = '';
 
   if (tasks.length === 0) {
@@ -70,6 +77,26 @@ async function loadTasks() {
   }
 
   tasks.forEach((task) => {
+    const taskAttachments = attachments.filter(
+  (attachment) => attachment.task_id === task.id
+);
+
+const attachmentsHtml = taskAttachments
+  .map(
+    (attachment) => `
+      <div class="mt-2">
+        <span>${attachment.file_name}</span>
+
+        <button
+          class="btn btn-sm btn-outline-secondary ms-2 download-attachment-btn"
+          data-path="${attachment.file_path}"
+        >
+          Download
+        </button>
+      </div>
+    `
+  )
+  .join('');
     const taskCard = document.createElement('div');
     taskCard.className = 'col-md-6 col-lg-4';
 
@@ -112,6 +139,9 @@ async function loadTasks() {
   >
     Upload Attachment
   </button>
+  <div class="mt-3">
+  ${attachmentsHtml}
+</div>
         </div>
       </div>
     `;
@@ -209,6 +239,25 @@ async function loadTasks() {
 
     alert('Attachment uploaded successfully.');
     input.value = '';
+    loadTasks();
+  });
+});
+document.querySelectorAll('.download-attachment-btn').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const filePath = button.dataset.path;
+
+    const { data, error } = await supabase.storage
+      .from('attachments')
+      .createSignedUrl(filePath, 60, {
+        download: true,
+      });
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    window.location.href = data.signedUrl;
   });
 });
 }
