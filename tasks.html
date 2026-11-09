@@ -36,48 +36,49 @@
     </div>
   </nav>
 
-  <main class="page-section">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0">Task Board</h1>
+<main class="page-section">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 id="projectTitle" class="mb-0">Task Board</h1>
+    </div>
 
-        <button class="btn btn-primary">
-          Add Task
-        </button>
-      </div>
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        <h2 class="h5 mb-3">Add Task</h2>
 
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card shadow-sm task-column">
-            <div class="card-body">
-              <h4 class="card-title">Not Started</h4>
-              <p class="text-muted">New tasks will appear here.</p>
-            </div>
+        <form id="taskForm">
+          <div class="mb-3">
+            <label for="taskTitle" class="form-label">Task Title</label>
+            <input
+              type="text"
+              id="taskTitle"
+              class="form-control"
+              required
+            />
           </div>
-        </div>
 
-        <div class="col-md-4">
-          <div class="card shadow-sm task-column">
-            <div class="card-body">
-              <h4 class="card-title">In Progress</h4>
-              <p class="text-muted">Tasks in progress will appear here.</p>
-            </div>
+          <div class="mb-3">
+            <label for="taskDescription" class="form-label">Description</label>
+            <textarea
+              id="taskDescription"
+              class="form-control"
+              rows="3"
+            ></textarea>
           </div>
-        </div>
 
-        <div class="col-md-4">
-          <div class="card shadow-sm task-column">
-            <div class="card-body">
-              <h4 class="card-title">Done</h4>
-              <p class="text-muted">Completed tasks will appear here.</p>
-            </div>
-          </div>
-        </div>
+          <button type="submit" class="btn btn-primary">
+            Add Task
+          </button>
+        </form>
       </div>
     </div>
-  </main>
+
+    <div id="tasksContainer" class="row g-4"></div>
+  </div>
+</main>
 
   <script type="module" src="/src/main.js"></script>
   <script type="module" src="/src/auth-guard.js"></script>
+  <script type="module" src="/src/tasks.js"></script>
 </body>
 </html> 
