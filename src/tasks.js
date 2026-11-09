@@ -99,6 +99,19 @@ async function loadTasks() {
           >
             Delete
           </button>
+          <div class="mt-3">
+  <input
+    type="file"
+    class="form-control mb-2 attachment-input"
+    data-id="${task.id}"
+  >
+
+  <button
+    class="btn btn-outline-primary upload-attachment-btn"
+    data-id="${task.id}"
+  >
+    Upload Attachment
+  </button>
         </div>
       </div>
     `;
@@ -147,6 +160,57 @@ async function loadTasks() {
       loadTasks();
     });
   });
+  document.querySelectorAll('.upload-attachment-btn').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const taskId = button.dataset.id;
+
+    const input = document.querySelector(
+      `.attachment-input[data-id="${taskId}"]`
+    );
+
+    const file = input.files[0];
+
+    if (!file) {
+      alert('Please select a file first.');
+      return;
+    }
+
+    const user = await getCurrentUser();
+
+    if (!user) {
+      return;
+    }
+
+    const filePath =
+      `${user.id}/${taskId}/${Date.now()}-${file.name}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from('attachments')
+      .upload(filePath, file);
+
+    if (uploadError) {
+      alert(uploadError.message);
+      return;
+    }
+
+    const { error: attachmentError } = await supabase
+      .from('attachments')
+      .insert({
+        user_id: user.id,
+        task_id: taskId,
+        file_name: file.name,
+        file_path: filePath,
+      });
+
+    if (attachmentError) {
+      alert(attachmentError.message);
+      return;
+    }
+
+    alert('Attachment uploaded successfully.');
+    input.value = '';
+  });
+});
 }
 
 if (taskForm) {
